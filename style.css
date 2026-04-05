@@ -141,3 +141,22 @@ footer {
     margin: 5px 0;
     font-size: 0.9rem;
 }
+
+/* Mobile Compatible learned from Asterisks Dev Team*/
+
+@media (max-width: 768px) {
+    .topic {
+        width: 95%;
+        padding: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
