@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Coding Topics</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div style="display:flex; align-items:center;">
+        <img src="SecureCode Lab.png" alt="logo" width="120" style="margin-right:10px;">
+        <h1>Secure Coding Topics</h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topics.html">Topics</a></li>
+            <li><a href="snippets.html">Snippets</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <!-- SQL Injection -->
+    <section class="intro">
+        <h2>SQL Injection Prevention</h2>
+        <p>SQL Injection happens when attackers manipulate database queries using user input.</p>
+
+        <h3>❌ Vulnerable Code</h3>
+        <pre><code>
+query = "SELECT * FROM users WHERE username = '" + user + "'";
+        </code></pre>
+
+        <h3>✅ Secure Code</h3>
+        <pre><code>
+PreparedStatement stmt = conn.prepareStatement(
+    "SELECT * FROM users WHERE username = ?"
+);
+stmt.setString(1, user);
+        </code></pre>
+    </section>
+
+    <!-- XSS -->
+    <section class="intro">
+        <h2>Cross-Site Scripting (XSS)</h2>
+        <p>XSS allows attackers to inject malicious scripts into webpages.</p>
+
+        <h3>❌ Vulnerable Code</h3>
+        <pre><code>
+document.write(userInput);
+        </code></pre>
+
+        <h3>✅ Secure Code</h3>
+        <pre><code>
+element.textContent = userInput;
+        </code></pre>
+    </section>
+
+    <!-- Input Validation -->
+    <section class="intro">
+        <h2>Input Validation & Sanitization</h2>
+        <p>Always validate user input before processing it.</p>
+
+        <h3>❌ Vulnerable Code</h3>
+        <pre><code>
+let age = userInput;
+        </code></pre>
+
+        <h3>✅ Secure Code</h3>
+        <pre><code>
+let age = parseInt(userInput);
+if (!isNaN(age)) {
+    console.log("Valid input");
+}
+        </code></pre>
+    </section>
+
+    <!-- Password Hashing -->
+    <section class="intro">
+        <h2>Secure Password Hashing</h2>
+        <p>Passwords should never be stored in plain text.</p>
+
+        <h3>❌ Vulnerable Code</h3>
+        <pre><code>
+password = "123456";
+        </code></pre>
+
+        <h3>✅ Secure Code</h3>
+        <pre><code>
+bcrypt.hash(password, 10);
+        </code></pre>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>© 2026 SecureCode Lab</p>
+        <p>
+            Sonal Dilmith (C25100005) |
+            Sanjitha Prabashwara (C25100004) |
+            Aksha Prasadi (C25100008) |
+            Sharen Joshua (C25100014) |
+            Danindu Kodithuwakku (C25100003) |
+            Kirubagaran Dilrukshan (C25100007)
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

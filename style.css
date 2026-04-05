@@ -1,3 +1,4 @@
+/* ROOT */
 :root {
     --primary-color: #0d1117;
     --secondary-color: #00ffcc;
@@ -5,6 +6,7 @@
     --text: #c9d1d9;
 }
 
+/* BODY */
 body {
     margin: 0;
     font-family: "Segoe UI", sans-serif;
@@ -12,6 +14,7 @@ body {
     color: var(--text);
 }
 
+/* HEADER SECTION */
 header {
     background: #010409;
     padding: 15px;
@@ -24,6 +27,8 @@ header h1 {
     color: var(--accent-color);
     font-size: 22px;
 }
+
+/* NAVIGATION BAR */
 nav ul {
     display: flex;
     justify-content: center;
@@ -73,6 +78,3 @@ footer {
     background-color:#d9ff00;
     margin-top: 20px;
 }
-
-
-
