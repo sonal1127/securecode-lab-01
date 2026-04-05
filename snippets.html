@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippets Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div style="display:flex; align-items:center;">
+        <img src="SecureCode Lab.png" alt="logo" width="120" style="margin-right:10px;">
+        <h1>Code Snippets Library</h1>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="topics.html">Topics</a></li>
+            <li><a href="snippets.html">Snippets</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="resources.html">Resources</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section class="snippets-container">
+
+        <!-- Snippet 1 -->
+        <div class="snippet-card">
+            <h3>SQL Injection Prevention</h3>
+            <p><strong>Language:</strong> Java</p>
+            <span class="risk high">HIGH RISK</span>
+
+            <pre><code>
+PreparedStatement stmt = conn.prepareStatement(
+    "SELECT * FROM users WHERE username = ?"
+);
+stmt.setString(1, user);
+            </code></pre>
+        </div>
+
+        <!-- Snippet 2 -->
+        <div class="snippet-card">
+            <h3>XSS Protection</h3>
+            <p><strong>Language:</strong> JavaScript</p>
+            <span class="risk high">HIGH RISK</span>
+
+            <pre><code>
+element.textContent = userInput;
+            </code></pre>
+        </div>
+
+        <!-- Snippet 3 -->
+        <div class="snippet-card">
+            <h3>Password Hashing</h3>
+            <p><strong>Language:</strong> Node.js</p>
+            <span class="risk medium">MEDIUM RISK</span>
+
+            <pre><code>
+bcrypt.hash(password, 10);
+            </code></pre>
+        </div>
+
+        <!-- Snippet 4 -->
+        <div class="snippet-card">
+            <h3>Input Validation</h3>
+            <p><strong>Language:</strong> JavaScript</p>
+            <span class="risk low">LOW RISK</span>
+
+            <pre><code>
+if (!isNaN(userInput)) {
+    console.log("Valid number");
+}
+            </code></pre>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <p>© 2026 SecureCode Lab</p>
+        <p>
+            Sonal Dilmith (C25100005) |
+            Sanjitha Prabashwara (C25100004) |
+            Aksha Prasadi (C25100008) |
+            Sharen Joshua (C25100014) |
+            Danindu Kodithuwakku (C25100003) |
+            Kirubagaran Dilrukshan (C25100007)
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
