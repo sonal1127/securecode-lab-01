@@ -28,58 +28,227 @@
 
 <main>
 
-    <section class="snippets-container">
+<section class="snippets-container">
 
-        <!-- Snippet 1 -->
-        <div class="snippet-card">
-            <h3>SQL Injection Prevention</h3>
-            <p><strong>Language:</strong> Java</p>
-            <span class="risk high">HIGH RISK</span>
+    <!--sql-->
+    <div class="snippet-card">
+        <h3>SQL Injection Prevention</h3>
+        <p><strong>Language:</strong> SQL</p>
+        <p><strong>Topic:</strong> Database Security</p>
+        <span class="risk high">HIGH RISK</span>
 
-            <pre><code>
-PreparedStatement stmt = conn.prepareStatement(
-    "SELECT * FROM users WHERE username = ?"
-);
-stmt.setString(1, user);
-            </code></pre>
-        </div>
+        <pre><code>
+query = "SELECT * FROM users WHERE username = %s"
+cursor.execute(query, (username,))
+        </code></pre>
+    </div>
 
-        <!-- Snippet 2 -->
-        <div class="snippet-card">
-            <h3>XSS Protection</h3>
-            <p><strong>Language:</strong> JavaScript</p>
-            <span class="risk high">HIGH RISK</span>
+    <div class="snippet-card">
+    <h3>Safe String Output</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> Output Safety</p>
+    <span class="risk low">LOW RISK</span>
 
-            <pre><code>
-element.textContent = userInput;
-            </code></pre>
-        </div>
+    <pre><code>
+user_input = "Hello World"
+print(user_input)
+    </code></pre>
+    </div>
 
-        <!-- Snippet 3 -->
-        <div class="snippet-card">
-            <h3>Password Hashing</h3>
-            <p><strong>Language:</strong> Node.js</p>
-            <span class="risk medium">MEDIUM RISK</span>
+    <div class="snippet-card">
+    <h3>Basic Input Handling</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> User Input</p>
+    <span class="risk low">LOW RISK</span>
 
-            <pre><code>
-bcrypt.hash(password, 10);
-            </code></pre>
-        </div>
+    <pre><code>
+name = input("Enter your name: ")
+print("Welcome", name)
+    </code></pre>
+</div>
 
-        <!-- Snippet 4 -->
-        <div class="snippet-card">
-            <h3>Input Validation</h3>
-            <p><strong>Language:</strong> JavaScript</p>
-            <span class="risk low">LOW RISK</span>
+    <!--xss-->
+    <div class="snippet-card">
+        <h3>XSS Protection</h3>
+        <p><strong>Language:</strong> HTML</p>
+        <p><strong>Topic:</strong> Web Security</p>
+        <span class="risk high">HIGH RISK</span>
 
-            <pre><code>
-if (!isNaN(userInput)) {
-    console.log("Valid number");
-}
-            </code></pre>
-        </div>
+        <pre><code>
+import html
+safe_input = html.escape(user_input)
+        </code></pre>
+    </div>
 
-    </section>
+    <!--password-->
+    <div class="snippet-card">
+        <h3>Password Hashing</h3>
+        <p><strong>Language:</strong> Python</p>
+        <p><strong>Topic:</strong> Authentication</p>
+        <span class="risk high">HIGH RISK</span>
+
+        <pre><code>
+import bcrypt
+hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        </code></pre>
+    </div>
+
+    <div class="snippet-card">
+    <h3>Simple Calculation</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> Basic Logic</p>
+    <span class="risk low">LOW RISK</span>
+
+    <pre><code>
+a = 10
+b = 5
+print(a + b)
+    </code></pre>
+</div>
+
+    <!--input-->
+    <div class="snippet-card">
+        <h3>Input Validation</h3>
+        <p><strong>Language:</strong> Python</p>
+        <p><strong>Topic:</strong> Data Validation</p>
+        <span class="risk medium">MEDIUM RISK</span>
+
+        <pre><code>
+if user_input.isdigit():
+    age = int(user_input)
+        </code></pre>
+    </div>
+
+    <!--https-->
+    <div class="snippet-card">
+        <h3>HTTPS Requests</h3>
+        <p><strong>Type:</strong> https</p>
+        <p><strong>Topic:</strong> Network Security</p>
+        <span class="risk medium">MEDIUM RISK</span>
+
+        <pre><code>
+import requests
+requests.get("https://example.com")
+        </code></pre>
+    </div>
+
+    <!--file-->
+    <div class="snippet-card">
+        <h3>Secure File Upload</h3>
+        <p><strong>Language:</strong> Python</p>
+        <p><strong>Topic:</strong> File Security</p>
+        <span class="risk high">HIGH RISK</span>
+
+        <pre><code>
+import os
+filename = os.path.basename(file.filename)
+
+if filename.endswith(".jpg"):
+    file.save("uploads/" + filename)
+        </code></pre>
+    </div>
+
+    <div class="snippet-card">
+    <h3>Secure Login Handling</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> Authentication Security</p>
+    <span class="risk high">HIGH RISK</span>
+
+    <pre><code>
+import bcrypt
+
+stored_hash = db.get_user_hash(username)
+
+if bcrypt.checkpw(password.encode(), stored_hash):
+    print("Login successful")
+else:
+    print("Invalid credentials")
+    </code></pre>
+</div>
+
+<div class="snippet-card">
+    <h3>Prevent Directory Traversal</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> File Security</p>
+    <span class="risk high">HIGH RISK</span>
+
+    <pre><code>
+import os
+
+filename = os.path.basename(user_input)
+file_path = os.path.join("uploads", filename)
+    </code></pre>
+</div>
+
+<div class="snippet-card">
+    <h3>Safe API Request Handling</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> API Security</p>
+    <span class="risk medium">MEDIUM RISK</span>
+
+    <pre><code>
+import requests
+
+try:
+    response = requests.get("https://api.example.com/data", timeout=5)
+    print(response.json())
+except requests.exceptions.RequestException:
+    print("API request failed safely")
+    </code></pre>
+</div>
+
+<div class="snippet-card">
+    <h3>Secure Session Handling</h3>
+    <p><strong>Language:</strong> Python</p>
+    <p><strong>Topic:</strong> Session Security</p>
+    <span class="risk high">HIGH RISK</span>
+
+    <pre><code>
+import secrets
+
+session_id = secrets.token_hex(16)
+session["id"] = session_id
+    </code></pre>
+</div>
+
+<div class="snippet-card">
+    <h3>SQL Injection</h3>
+    <p><strong>Language:</strong> SQL</p>
+    <p><strong>Topic:</strong> Database Security</p>
+    <span class="risk high">HIGH RISK</span>
+
+    <pre><code>
+SELECT * FROM users 
+WHERE username = '" + username + "';
+    </code></pre>
+</div>
+
+<div class="snippet-card">
+    <h3>Prepared Statement</h3>
+    <p><strong>Language:</strong> SQL</p>
+    <p><strong>Topic:</strong> SQL Injection Prevention</p>
+    <span class="risk high">HIGH RISK</span>
+
+    <pre><code>
+SELECT * FROM users 
+WHERE username = ?;
+    </code></pre>
+</div>
+
+<div class="snippet-card">
+    <h3>Safe Query Filtering</h3>
+    <p><strong>Language:</strong> SQL</p>
+    <p><strong>Topic:</strong> Data Protection</p>
+    <span class="risk medium">MEDIUM RISK</span>
+
+    <pre><code>
+SELECT id, username 
+FROM users 
+WHERE status = 'active';
+    </code></pre>
+</div>
+
+</section>
 
 </main>
 
@@ -89,10 +258,10 @@ if (!isNaN(userInput)) {
         <p>
             Sonal Dilmith (C25100005) |
             Sanjitha Prabashwara (C25100004) |
-            Aksha Prasadi (C25100008) |
+            Aksha Prasadi (C25100001) |
             Sharen Joshua (C25100014) |
             Danindu Kodithuwakku (C25100003) |
-            Kirubagaran Dilrukshan (C25100007)
+            Kirubagaran Dilrukshan (C25100008)
         </p>
     </div>
 </footer>

@@ -28,74 +28,228 @@
 
 <main>
 
-     <!--SQL Injection-->
-    <section class="intro">
+    <!--sql-->
+    <section class="topic">
         <h2>SQL Injection Prevention</h2>
-        <p>SQL Injection happens when attackers manipulate database queries using user input.</p>
+        <p>SQL Injection is a critical vulnerability where attackers manipulate database queries using malicious input. This can allow unauthorized access to sensitive data or even complete control over the database</p>
 
-        <h3>❌ Vulnerable Code</h3>
-        <pre><code>
-query = "SELECT * FROM users WHERE username = '" + user + "'";
-        </code></pre>
+        <div class="comparison">
 
-        <h3>✅ Secure Code</h3>
-        <pre><code>
-PreparedStatement stmt = conn.prepareStatement(
-    "SELECT * FROM users WHERE username = ?"
-);
-stmt.setString(1, user);
-        </code></pre>
+            <div class="vulnerable">
+                <h3>&#10060; Vulnerable Code</h3>
+                <pre><code>
+query = "SELECT * FROM users WHERE username = '" + username + "'"
+cursor.execute(query)
+                </code></pre>
+                <p>This code directly inserts user input into the query, making it vulnerable to attacks</p>
+            </div>
+
+            <div class="secure">
+                <h3>&#9989; Secure Code</h3>
+                <pre><code>
+query = "SELECT * FROM users WHERE username = %s"
+cursor.execute(query, (username,))
+                </code></pre>
+                <p>Using parameterized queries prevents attackers from injecting malicious SQL</p>
+            </div>
+
+        </div>
     </section>
 
-    <section class="intro">
-        <h2>Cross-Site Scripting (XSS)</h2>
-        <p>XSS allows attackers to inject malicious scripts into webpages.</p>
+    <!--xss-->
+    <section class="topic">
+        <h2>Cross-Site Scripting (XSS) Defense</h2>
+        <p>XSS attacks occur when malicious scripts are injected into web pages. These scripts can steal user data, session cookies, or modify page content</p>
 
-        <h3>❌ Vulnerable Code</h3>
-        <pre><code>
-document.write(userInput);
-        </code></pre>
+        <div class="comparison">
 
-        <h3>✅ Secure Code</h3>
-        <pre><code>
-element.textContent = userInput;
-        </code></pre>
+            <div class="vulnerable">
+                <h3>&#10060; Vulnerable Code</h3>
+                <pre><code>
+return f"<h1>{user_input}</h1>"
+                </code></pre>
+                <p>User input is directly rendered without sanitization</p>
+            </div>
+
+            <div class="secure">
+                <h3>&#9989; Secure Code</h3>
+                <pre><code>
+import html
+safe_input = html.escape(user_input)
+return f"<h1>{safe_input}</h1>"
+                </code></pre>
+                <p>Escaping input prevents script injection</p>
+            </div>
+
+        </div>
     </section>
 
-    <!--INPUT Validation-->
-    <section class="intro">
+    <!--input-->
+    <section class="topic">
         <h2>Input Validation & Sanitization</h2>
-        <p>Always validate user input before processing it.</p>
+        <p>Input validation ensures that only safe and expected data is processed. This prevents many attacks such as injection, crashes, or unexpected behavior</p>
 
-        <h3>❌ Vulnerable Code</h3>
-        <pre><code>
-let age = userInput;
-        </code></pre>
+        <div class="comparison">
 
-        <h3>✅ Secure Code</h3>
-        <pre><code>
-let age = parseInt(userInput);
-if (!isNaN(age)) {
-    console.log("Valid input");
-}
-        </code></pre>
+            <div class="vulnerable">
+                <h3>&#10060; Vulnerable Code</h3>
+                <pre><code>
+age = int(user_input)
+                </code></pre>
+                <p>This can crash or be exploited if invalid input is given</p>
+            </div>
+
+            <div class="secure">
+                <h3>&#9989; Secure Code</h3>
+                <pre><code>
+if user_input.isdigit():
+    age = int(user_input)
+else:
+    print("Invalid input")
+                </code></pre>
+                <p>Validation ensures only safe input is processed</p>
+            </div>
+
+        </div>
     </section>
 
-    <!--password Hashing-->
-    <section class="intro">
+    <!--pass-->
+    <section class="topic">
         <h2>Secure Password Hashing</h2>
-        <p>Passwords should never be stored in plain text.</p>
+        <p>Passwords must never be stored in plain text. Hashing converts passwords into secure values that cannot be easily reversed</p>
 
-        <h3>❌ Vulnerable Code</h3>
-        <pre><code>
-password = "123456";
-        </code></pre>
+        <div class="comparison">
 
-        <h3>✅ Secure Code</h3>
-        <pre><code>
-bcrypt.hash(password, 10);
-        </code></pre>
+            <div class="vulnerable">
+                <h3>&#10060; Vulnerable Code</h3>
+                <pre><code>
+password = "mypassword"
+save_to_db(password)
+                </code></pre>
+                <p>Plain text passwords can be easily stolen</p>
+            </div>
+
+            <div class="secure">
+                <h3>&#9989; Secure Code</h3>
+                <pre><code>
+import bcrypt
+hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+save_to_db(hashed)
+                </code></pre>
+                <p>Hashing protects passwords even if the database is compromised</p>
+            </div>
+
+        </div>
     </section>
+
+    <section class="topic">
+    <h2>HTTPS & Secure Communication</h2>
+    <p>HTTPS ensures that data transmitted between users and servers is encrypted. Without HTTPS, attackers can intercept sensitive data such as passwords</p>
+
+    <div class="comparison">
+
+        <div class="vulnerable">
+            <h3>&#10060; Vulnerable Code</h3>
+            <pre><code>
+import requests
+requests.get("http://example.com")
+            </code></pre>
+            <p>Data is sent without encryption, making it vulnerable to interception</p>
+        </div>
+
+        <div class="secure">
+            <h3>&#9989; Secure Code</h3>
+            <pre><code>
+import requests
+requests.get("https://example.com")
+            </code></pre>
+            <p>HTTPS encrypts communication and protects sensitive data</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="topic">
+    <h2>Principle of Least Privilege</h2>
+    <p>This principle ensures that users and systems only have the minimum permissions required to perform their tasks, reducing security risks</p>
+
+    <div class="comparison">
+
+        <div class="vulnerable">
+            <h3>&#10060; Vulnerable Code</h3>
+            <pre><code>
+db_user = "admin"
+            </code></pre>
+            <p>Using admin access increases risk if compromised</p>
+        </div>
+
+        <div class="secure">
+            <h3>&#9989; Secure Code</h3>
+            <pre><code>
+db_user = "readonly_user"
+            </code></pre>
+            <p>Limited permissions reduce potential damage from attacks</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="topic">
+    <h2>Secure File Uploads</h2>
+    <p>File uploads can be dangerous if attackers upload malicious files. Proper validation ensures only safe files are accepted</p>
+
+    <div class="comparison">
+
+        <div class="vulnerable">
+            <h3>&#10060; Vulnerable Code</h3>
+            <pre><code>
+file.save("uploads/" + file.filename)
+            </code></pre>
+            <p>File names are not validated and may contain malicious content</p>
+        </div>
+
+        <div class="secure">
+            <h3>&#9989; Secure Code</h3>
+            <pre><code>
+import os
+
+filename = os.path.basename(file.filename)
+
+if filename.endswith(".jpg") or filename.endswith(".png"):
+    file.save("uploads/" + filename)
+            </code></pre>
+            <p>Validating file types and names prevents malicious uploads</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="topic">
+    <h2>Error Handling & Logging Best Practices</h2>
+    <p>Proper error handling ensures that sensitive system details are not exposed to users while still logging errors for developers.</p>
+
+    <div class="comparison">
+
+        <div class="vulnerable">
+            <h3>&#10060; Vulnerable Code</h3>
+            <pre><code>
+print(error)
+            </code></pre>
+            <p>Displaying raw errors can expose sensitive system information</p>
+        </div>
+
+        <div class="secure">
+            <h3>&#9989; Secure Code</h3>
+            <pre><code>
+import logging
+
+logging.error("An error occurred")
+            </code></pre>
+            <p>Errors are logged securely without exposing details to users</p>
+        </div>
+
+    </div>
+</section>
 
 </main>
 
@@ -105,10 +259,10 @@ bcrypt.hash(password, 10);
         <p>
             Sonal Dilmith (C25100005) |
             Sanjitha Prabashwara (C25100004) |
-            Aksha Prasadi (C25100008) |
+            Aksha Prasadi (C25100001) |
             Sharen Joshua (C25100014) |
             Danindu Kodithuwakku (C25100003) |
-            Kirubagaran Dilrukshan (C25100007)
+            Kirubagaran Dilrukshan (C25100008)
         </p>
     </div>
 </footer>
