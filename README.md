@@ -40,9 +40,9 @@
 
 - With that help I manages to build everything perfect
 
-## Sanjith Prabashwara C25100004
+## Sanjitha Prabashwara C25100004
 
-- Hi, I am Sanjith 
+- Hi, I am Sanjitha
 - I helped our team leader to develop pages and css 
 - i tell him to use prof tags like css tags such as < content, mission, card, secure, vulnerable > instead of his super vision classes 
 - I belive we worked as a team to develop a gem

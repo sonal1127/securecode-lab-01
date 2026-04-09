@@ -41,7 +41,7 @@
 query = "SELECT * FROM users WHERE username = '" + username + "'"
 cursor.execute(query)
                 </code></pre>
-                <p>This code directly inserts user input into the query, making it vulnerable to attacks</p>
+                <p>This code directly inserts user input into the query, making it vulnerable to attacks | it's dangerous ?</p>
             </div>
 
             <div class="secure">
@@ -59,7 +59,7 @@ cursor.execute(query, (username,))
     <!--xss-->
     <section class="topic">
         <h2>Cross-Site Scripting (XSS) Defense</h2>
-        <p>XSS attacks occur when malicious scripts are injected into web pages. These scripts can steal user data, session cookies, or modify page content</p>
+        <p>XSS attacks happen when malicious scripts are injected into web pages. These scripts can steal user data, session cookies or modify page content</p>
 
         <div class="comparison">
 
@@ -87,7 +87,7 @@ return f"<h1>{safe_input}</h1>"
     <!--input-->
     <section class="topic">
         <h2>Input Validation & Sanitization</h2>
-        <p>Input validation ensures that only safe and expected data is processed. This prevents many attacks such as injection, crashes, or unexpected behavior</p>
+        <p>Input validation process only safe and expected data while sanitization filter and clean input to make it safe. This prevents many attacks such as injection, crashes, or unexpected behavior</p>
 
         <div class="comparison">
 
@@ -96,7 +96,7 @@ return f"<h1>{safe_input}</h1>"
                 <pre><code>
 age = int(user_input)
                 </code></pre>
-                <p>This can crash or be exploited if invalid input is given</p>
+                <p>if invalid input is it has a potential to exploit valuble data<br><code><center> you are cooked</center></code></p>
             </div>
 
             <div class="secure">
@@ -107,7 +107,7 @@ if user_input.isdigit():
 else:
     print("Invalid input")
                 </code></pre>
-                <p>Validation ensures only safe input is processed</p>
+                <p>Using this step to validat the input can help to keep your valuble data and information safe</p>
             </div>
 
         </div>
@@ -116,7 +116,9 @@ else:
     <!--pass-->
     <section class="topic">
         <h2>Secure Password Hashing</h2>
-        <p>Passwords must never be stored in plain text. Hashing converts passwords into secure values that cannot be easily reversed</p>
+        <p>Passwords must never be stored in plain text. Hashing converts passwords into secure values. Without required key no one can find it</p>
+        <p></p>
+        <code>Fact - using multiple encryptions your password will be more powerfull</code>
 
         <div class="comparison">
 
@@ -154,7 +156,7 @@ save_to_db(hashed)
 import requests
 requests.get("http://example.com")
             </code></pre>
-            <p>Data is sent without encryption, making it vulnerable to interception</p>
+            <p>Data is sent without encryption, making it vulnerable to interception | most of the browsers even reject to redirect these sites</p>
         </div>
 
         <div class="secure">
@@ -164,6 +166,8 @@ import requests
 requests.get("https://example.com")
             </code></pre>
             <p>HTTPS encrypts communication and protects sensitive data</p>
+            <p></p>
+            <code>https port: 443</code>
         </div>
 
     </div>
@@ -180,7 +184,7 @@ requests.get("https://example.com")
             <pre><code>
 db_user = "admin"
             </code></pre>
-            <p>Using admin access increases risk if compromised</p>
+            <p>Admin access only available to the specified people</p>
         </div>
 
         <div class="secure">
@@ -188,7 +192,7 @@ db_user = "admin"
             <pre><code>
 db_user = "readonly_user"
             </code></pre>
-            <p>Limited permissions reduce potential damage from attacks</p>
+            <p>Limiting permissions for users help to prevent attackers exposing vulnerabilities<code> without even trying</code></p>
         </div>
 
     </div>
@@ -235,7 +239,7 @@ if filename.endswith(".jpg") or filename.endswith(".png"):
             <pre><code>
 print(error)
             </code></pre>
-            <p>Displaying raw errors can expose sensitive system information</p>
+            <p>User only see an <code>"error"</code> messeage help to prevent exposing vulnerabilities</p> 
         </div>
 
         <div class="secure">
@@ -245,7 +249,7 @@ import logging
 
 logging.error("An error occurred")
             </code></pre>
-            <p>Errors are logged securely without exposing details to users</p>
+            <p>giving full log of the error to find out what cause the problem</p>
         </div>
 
     </div>
@@ -255,7 +259,7 @@ logging.error("An error occurred")
 
 <footer>
     <div class="footer-content">
-        <p>© 2026 SecureCode Lab</p>
+        <p><code>© 2026 SecureCode Lab</code></p>
         <p>
             Sonal Dilmith (C25100005) |
             Sanjitha Prabashwara (C25100004) |
